@@ -7,7 +7,6 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      ./desktop.nix
     ];
 
   # Bootloader.
@@ -55,7 +54,7 @@
     jack.enable = true;
   };
 
-  virtualisation.docker.enable = true;
+  hardware.xpadneo.enable = true;
 
   users.users.cethien = {
     isNormalUser = true;
@@ -63,17 +62,48 @@
     extraGroups = [ "networkmanager" "wheel" "docker" ];
   };
 
-  programs.steam.enable = true;
-  programs.steam.gamescopeSession.enable = true;
-  programs.gamemode.enable = true;
+  services.xserver = {
+    xkb.layout = "de";
+    xkb.variant = "nodeadkeys";
+  };
+
+  services.xserver.enable = true;
+
+  # GNOME
+  services.xserver.displayManager.gdm.enable = true;
+  services.xserver.desktopManager.gnome.enable = true;
+
+  environment.gnome.excludePackages = (with pkgs; [
+    gnome-photos
+    gnome-tour
+    cheese # webcam tool
+    epiphany # web browser
+    evince # document viewer
+    gnome-characters
+  ]);
+
+  programs = {
+    steam.enable = true;
+    steam.gamescopeSession.enable = true;
+
+    gamemode.enable = true;
+  };
 
   environment.systemPackages = with pkgs; [
     home-manager
 
     gnome-tweaks
+    gnomeExtensions.tweaks-in-system-menu
+    gnomeExtensions.quick-settings-audio-devices-hider
+    gnomeExtensions.bluetooth-battery-meter
     gnomeExtensions.system-monitor
     gnomeExtensions.appindicator
+
+    gnomeExtensions.docker
+    gnomeExtensions.spotify-controls
   ];
+
+  virtualisation.docker.enable = true;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
