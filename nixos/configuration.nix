@@ -1,13 +1,14 @@
 { config, pkgs, ... }:
 
 {
+  imports =
+    [
+      ./hardware-configuration.nix
+    ];
+
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   nixpkgs.config.allowUnfree = true;
 
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
 
   # Bootloader.
   boot.loader.grub.enable = true;
@@ -93,14 +94,18 @@
     home-manager
 
     gnome-tweaks
+
+    gnomeExtensions.legacy-gtk3-theme-scheme-auto-switcher
     gnomeExtensions.tweaks-in-system-menu
     gnomeExtensions.quick-settings-audio-devices-hider
     gnomeExtensions.bluetooth-battery-meter
     gnomeExtensions.system-monitor
     gnomeExtensions.appindicator
+    gnomeExtensions.do-not-disturb-while-screen-sharing-or-recording
+
+    gnomeExtensions.spotify-controls
 
     gnomeExtensions.docker
-    gnomeExtensions.spotify-controls
   ];
 
   virtualisation.docker.enable = true;
