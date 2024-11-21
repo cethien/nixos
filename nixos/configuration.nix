@@ -106,6 +106,7 @@
     gnomeExtensions.system-monitor
     gnomeExtensions.appindicator
     gnomeExtensions.do-not-disturb-while-screen-sharing-or-recording
+    gnomeExtensions.blur-my-shell
 
     gnomeExtensions.spotify-controls
     gnomeExtensions.docker
