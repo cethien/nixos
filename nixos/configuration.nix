@@ -90,6 +90,9 @@
     gamemode.enable = true;
   };
 
+  services.ratbagd.enable = true;
+  services.hardware.openrgb.enable = true;
+
   environment.systemPackages = with pkgs; [
     home-manager
 
@@ -98,14 +101,16 @@
     gnomeExtensions.legacy-gtk3-theme-scheme-auto-switcher
     gnomeExtensions.tweaks-in-system-menu
     gnomeExtensions.quick-settings-audio-devices-hider
+    gnomeExtensions.quick-settings-audio-panel
     gnomeExtensions.bluetooth-battery-meter
     gnomeExtensions.system-monitor
     gnomeExtensions.appindicator
     gnomeExtensions.do-not-disturb-while-screen-sharing-or-recording
 
     gnomeExtensions.spotify-controls
-
     gnomeExtensions.docker
+
+    piper
   ];
 
   virtualisation.docker.enable = true;
