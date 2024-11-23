@@ -1,14 +1,20 @@
 { config, pkgs, ... }:
 
 {
+  # This value determines the NixOS release from which the default
+  # settings for stateful data, like file locations and database versions
+  # on your system were taken. It‘s perfectly fine and recommended to leave
+  # this value at the release version of the first install of this system.
+  # Before changing this value read the documentation for this option
+  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
+  system.stateVersion = "23.11"; # Did you read the comment?
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nixpkgs.config.allowUnfree = true;
+
   imports =
     [
       ./hardware-configuration.nix
     ];
-
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
-  nixpkgs.config.allowUnfree = true;
-
 
   # Bootloader.
   boot.loader.grub.enable = true;
@@ -64,15 +70,21 @@
   };
 
   services.xserver = {
+    enable = true;
+
     xkb.layout = "de";
     xkb.variant = "nodeadkeys";
+
+    desktopManager.gnome.enable = true;
   };
 
-  services.xserver.enable = true;
+  catppuccin.flavor = "mocha";
+  catppuccin.enable = true;
 
-  # GNOME
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
+  services.displayManager.sddm = {
+    enable = true;
+    package = pkgs.kdePackages.sddm;
+  };
 
   environment.gnome.excludePackages = (with pkgs; [
     gnome-photos
@@ -83,6 +95,11 @@
     gnome-characters
   ]);
 
+  virtualisation.docker.enable = true;
+
+  services.ratbagd.enable = true;
+  services.hardware.openrgb.enable = true;
+
   programs = {
     steam.enable = true;
     steam.gamescopeSession.enable = true;
@@ -90,11 +107,10 @@
     gamemode.enable = true;
   };
 
-  services.ratbagd.enable = true;
-  services.hardware.openrgb.enable = true;
-
   environment.systemPackages = with pkgs; [
     home-manager
+
+    sddm-astronaut
 
     gnome-tweaks
 
@@ -107,6 +123,7 @@
     gnomeExtensions.appindicator
     gnomeExtensions.do-not-disturb-while-screen-sharing-or-recording
     gnomeExtensions.blur-my-shell
+    gnomeExtensions.gsconnect
 
     gnomeExtensions.spotify-controls
     gnomeExtensions.docker
@@ -114,13 +131,5 @@
     piper
   ];
 
-  virtualisation.docker.enable = true;
 
-  # This value determines the NixOS release from which the default
-  # settings for stateful data, like file locations and database versions
-  # on your system were taken. It‘s perfectly fine and recommended to leave
-  # this value at the release version of the first install of this system.
-  # Before changing this value read the documentation for this option
-  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "23.11"; # Did you read the comment?
 }
