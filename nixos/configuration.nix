@@ -109,21 +109,6 @@
 
   environment.systemPackages = with pkgs; [
     home-manager
-
     gnome-tweaks
-
-    gnomeExtensions.legacy-gtk3-theme-scheme-auto-switcher
-    gnomeExtensions.tweaks-in-system-menu
-    gnomeExtensions.quick-settings-audio-devices-hider
-    gnomeExtensions.quick-settings-audio-panel
-    gnomeExtensions.bluetooth-battery-meter
-    gnomeExtensions.system-monitor
-    gnomeExtensions.appindicator
-    gnomeExtensions.do-not-disturb-while-screen-sharing-or-recording
-    gnomeExtensions.blur-my-shell
-    gnomeExtensions.gsconnect
-
-    gnomeExtensions.spotify-controls
-    gnomeExtensions.docker
   ];
 }
