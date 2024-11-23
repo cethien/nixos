@@ -1,5 +1,5 @@
 {
-  description = "pc-cethien nixos configuration";
+  description = "cethien's nixos configuration";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
@@ -20,7 +20,7 @@
   in
   {
 
-    nixosConfigurations."pc-cethien" = nixpkgs.lib.nixosSystem {
+    nixosConfigurations.desktop = nixpkgs.lib.nixosSystem {
       specialArgs = { inherit system; };
 
       modules = [

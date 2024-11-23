@@ -21,7 +21,7 @@
   boot.loader.grub.device = "/dev/nvme0n1";
   boot.loader.grub.useOSProber = true;
 
-  networking.hostName = "pc-cethien";
+  networking.hostName = "desktop";
   networking.networkmanager.enable = true;
 
   time.timeZone = "Europe/Berlin";
@@ -110,8 +110,6 @@
   environment.systemPackages = with pkgs; [
     home-manager
 
-    sddm-astronaut
-
     gnome-tweaks
 
     gnomeExtensions.legacy-gtk3-theme-scheme-auto-switcher
@@ -127,9 +125,5 @@
 
     gnomeExtensions.spotify-controls
     gnomeExtensions.docker
-
-    piper
   ];
-
-
 }
