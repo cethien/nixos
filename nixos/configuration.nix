@@ -43,12 +43,8 @@
     enable = true;
     enable32Bit = true;
   };
-  services.xserver.videoDrivers = ["nvidia"];
   hardware.nvidia.modesetting.enable = true;
   hardware.nvidia.open = true;
-
-  # Enable CUPS to print documents.
-  services.printing.enable = true;
 
   # Enable sound with pipewire.
   hardware.pulseaudio.enable = false;
@@ -75,24 +71,29 @@
     xkb.layout = "de";
     xkb.variant = "nodeadkeys";
 
-    desktopManager.gnome.enable = true;
-  };
+    excludePackages = [ pkgs.xterm ];
 
-  catppuccin.flavor = "mocha";
-  catppuccin.enable = true;
+    videoDrivers = ["nvidia"];
+  };
 
   services.displayManager.sddm = {
     enable = true;
     package = pkgs.kdePackages.sddm;
   };
 
+  services.xserver.desktopManager.gnome.enable = true;
+
+  catppuccin.flavor = "mocha";
+  catppuccin.enable = true;
+
   environment.gnome.excludePackages = (with pkgs; [
     gnome-photos
     gnome-tour
-    cheese # webcam tool
+    gnome-music
     epiphany # web browser
-    evince # document viewer
-    gnome-characters
+    totem # video player
+    yelp # help
+    seahorse # password manager
   ]);
 
   virtualisation.docker.enable = true;
@@ -109,6 +110,8 @@
 
   environment.systemPackages = with pkgs; [
     home-manager
+    
+    sushi # gnome file manager previewer
     gnome-tweaks
   ];
 }
