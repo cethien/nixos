@@ -21,10 +21,14 @@
   {
 
     nixosConfigurations.desktop = nixpkgs.lib.nixosSystem {
-      specialArgs = { inherit system; };
+      specialArgs = { 
+        inherit system;
+        inherit pkgs;
+      };
 
       modules = [
         catppuccin.nixosModules.catppuccin
+        ./modules
         ./nixos/configuration.nix
       ];
     };
