@@ -2,11 +2,15 @@
 
 {
   imports = [
+    ./hardware.nix
     ./audio.nix
-    ./docker.nix
-    ./gaming.nix
-    ./gnome.nix
+    ./peripherals.nix
+    
     ./home-manager.nix
+    
+    ./desktop.nix
+    ./gaming.nix
+    ./docker.nix
   ];
 
   networking.networkmanager.enable = true;
@@ -29,7 +33,7 @@
   users.users.cethien = {
     isNormalUser = true;
     description = "cethien";
-    extraGroups = [ "networkmanager" "wheel" "docker" ];
+    extraGroups = [ "networkmanager" "wheel" ];
   };
 
   services.xserver = {
@@ -41,14 +45,5 @@
     excludePackages = [ pkgs.xterm ];
   };
 
-  catppuccin.enable = true;
-  catppuccin.flavor = "mocha";
 
-  services.displayManager.sddm = {
-    enable = true;
-    package = pkgs.kdePackages.sddm;
-  };
-
-  services.ratbagd.enable = true;
-  services.hardware.openrgb.enable = true;
 }
