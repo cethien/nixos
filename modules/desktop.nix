@@ -30,7 +30,24 @@
     video-trimmer
     errands
     pika-backup
-  ];
+  ] ++ [
+    roboto
+    open-sans
+    (nerdfonts.override { fonts = [ "FiraCode" "CodeNewRoman" ]; })
+  ] ++ (with pkgs.gnomeExtensions; [
+    legacy-gtk3-theme-scheme-auto-switcher
+    tweaks-in-system-menu
+    quick-settings-audio-devices-hider
+    quick-settings-audio-panel
+    bluetooth-battery-meter
+    system-monitor
+    appindicator
+    do-not-disturb-while-screen-sharing-or-recording
+    blur-my-shell
+    spotify-controls
+    docker
+    tiling-shell
+  ]);
 
   programs.kdeconnect = {
     enable = true;
