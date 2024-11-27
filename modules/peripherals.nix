@@ -8,6 +8,13 @@
 
   environment.systemPackages = with pkgs; [
       solaar # logitech
-      boatswain # elgato steam deck
+      
+      streamcontroller # streamdeck
+      gnomeExtensions.streamcontroller-integration
   ];
+
+  # programs.streamdeck-ui = {
+  #   enable = true;
+  #   autoStart = true;
+  # };
 }
