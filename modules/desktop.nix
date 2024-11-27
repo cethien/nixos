@@ -24,12 +24,13 @@
   ]);
 
   environment.systemPackages = with pkgs; [
-    sushi # gnome file manager previewer
     gnome-tweaks
-    decibels
-    video-trimmer
-    errands
-    pika-backup
+
+    sushi # gnome file manager previewer
+    decibels # gnome audio player
+    video-trimmer # gnome video editor
+    pika-backup # gnome backup tool
+    drawing # gnome image editor
   ] ++ [
     roboto
     open-sans
